@@ -14,10 +14,6 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
-env:
-  # Project-page subpath. Remove once the site moves to the apex liameissner.me domain.
-  SITE_BASE: /liameissner.me
-
 jobs:
   build:
     runs-on: ubuntu-latest
