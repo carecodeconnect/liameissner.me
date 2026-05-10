@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://liameissner.me/sitemap-index.xml

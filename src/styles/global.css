@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* ── Design tokens (Tailwind v4 @theme + CSS custom props) ── */
+@theme {
+  --color-paper: #f3efe6;
+  --color-paper-2: #ece5d4;
+  --color-ink: #1a1a1a;
+  --color-ink-2: #2b2520;
+  --color-muted: #6b6258;
+  --color-accent: #1747ff;
+
+  --font-serif: 'Instrument Serif', 'GT Sectra', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --paper: #f3efe6;
+  --paper-2: #ece5d4;
+  --ink: #1a1a1a;
+  --ink-2: #2b2520;
+  --muted: #6b6258;
+  --rule: rgba(26, 26, 26, 0.85);
+  --rule-soft: rgba(26, 26, 26, 0.18);
+  --accent: #1747ff;
+  --accent-soft: rgba(23, 71, 255, 0.08);
+  --serif: 'Instrument Serif', 'GT Sectra', Georgia, serif;
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --pad-x: clamp(20px, 5vw, 72px);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--accent); color: var(--paper); }
+
+a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
+a.link { border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+a:hover { opacity: 0.65; }
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  margin: 0;
+  text-wrap: pretty;
+}
+p { margin: 0 0 1em 0; max-width: 60ch; }
+em { font-style: italic; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.kicker {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 18px 0;
+}
+
+.img-placeholder {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(26, 26, 26, 0.05) 0 8px,
+      transparent 8px 16px),
+    var(--paper-2);
+  text-align: center;
+  padding: 16px;
+}
+
+.section { padding: clamp(60px, 9vw, 120px) var(--pad-x); }

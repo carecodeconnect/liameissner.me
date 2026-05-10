@@ -1,0 +1,31 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <span>© Lia Meißner {year}</span>
+  <span class="footer-links">
+    <a href="#">Impressum</a>
+    <a href="#">Datenschutz</a>
+  </span>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: clamp(32px, 4vw, 48px) var(--pad-x);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .footer :global(a) { color: var(--muted); }
+  .footer :global(a:hover) { color: var(--accent); }
+  .footer-links { display: flex; gap: 22px; }
+  @media (max-width: 540px) {
+    .footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>

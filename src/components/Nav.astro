@@ -1,0 +1,82 @@
+---
+const links = [
+  { href: '#wofur', label: 'Mission' },
+  { href: '#arbeit', label: 'Arbeit' },
+  { href: '#uber', label: 'Über' },
+  { href: '#aktuell', label: 'Aktuell' },
+  { href: '#kontakt', label: 'Kontakt' },
+];
+---
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a href="#top" class="brand">Lia Meissner</a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <button class="nav-toggle" aria-controls="mobile-menu" aria-expanded="false">Menü</button>
+  </div>
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile Navigation">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+  </nav>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in oklab, var(--paper) 92%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .nav-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px var(--pad-x);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 18px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .nav-links { display: flex; gap: 22px; }
+  .nav-links :global(a) { color: var(--ink); }
+  .nav-links :global(a:hover) { color: var(--accent); opacity: 1; }
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--rule-soft);
+    padding: 6px 10px;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px var(--pad-x) 18px;
+    border-top: 1px solid var(--rule-soft);
+    background: var(--paper);
+  }
+  .mobile-menu:global(.open) { display: flex; }
+  .mobile-menu :global(a) {
+    color: var(--ink);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: inline-block; }
+  }
+</style>

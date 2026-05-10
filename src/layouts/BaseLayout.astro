@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+}
+
+const {
+  title = 'Lia Meißner — Heartfelt Futures',
+  description = 'Lia Meißner — Zukunftsforscherin, Psychologin und Strategin für Heartfelt Futures. Eine Praxis zwischen Foresight, somatischer Arbeit und Speculative Design.',
+  lang = 'de',
+} = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <title>{title}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <slot />
+  <script>
+    import '../scripts/site.js';
+  </script>
+</body>
+</html>

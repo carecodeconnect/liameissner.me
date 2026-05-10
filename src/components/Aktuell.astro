@@ -1,0 +1,58 @@
+---
+---
+<section class="section" id="aktuell">
+  <div class="kicker">AKTUELL</div>
+  <h3>Lehre · Podcast.</h3>
+  <div class="aktuell-grid">
+    <div class="aktuell-item">
+      <h4>Lehre an der Freien Universität Berlin</h4>
+      <p>
+        <em>Inventing the Future</em> — Einführung in die Strategische Vorausschau<br>
+        <em>Einführung in die Szenariotechnik</em>
+      </p>
+      <a class="link offer-link" href="#">→ Zur Anmeldung</a>
+    </div>
+    <div class="aktuell-item">
+      <h4>Podcast — <em>Wie weiter mit Zukunftsangst</em></h4>
+      <p>Im Gespräch über die Frage, wie wir der Angst vor der Zukunft etwas Tragfähiges entgegensetzen können.</p>
+      <a class="link offer-link" href="#">→ Zur Folge</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  h3 {
+    font-size: clamp(28px, 4vw, 44px);
+    margin-bottom: 28px;
+  }
+  .aktuell-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 4vw, 56px);
+    border-top: 2px solid var(--rule);
+    padding-top: clamp(36px, 5vw, 56px);
+  }
+  @media (max-width: 760px) { .aktuell-grid { grid-template-columns: 1fr; } }
+
+  .aktuell-item { margin-bottom: 32px; max-width: 52ch; }
+  .aktuell-item :global(h4) {
+    font-family: var(--serif);
+    font-size: 20px;
+    margin: 0 0 8px 0;
+    font-weight: 400;
+  }
+  .aktuell-item :global(p) {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: none;
+    color: var(--ink-2);
+    margin-bottom: 10px;
+  }
+  .offer-link {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 13px;
+    font-family: var(--sans);
+    letter-spacing: 0.04em;
+  }
+</style>

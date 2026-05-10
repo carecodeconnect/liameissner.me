@@ -1,0 +1,50 @@
+---
+---
+<section class="section" id="uber">
+  <div class="about">
+    <div class="about-text">
+      <div class="kicker">ÜBER MICH</div>
+      <p>Ich bin Lia Meißner. Seit über zehn Jahren arbeite ich an der Schnittstelle von Zukunftsforschung, Psychologie und künstlerischer Praxis.</p>
+      <p>Ich habe Psychologie und Soziologie studiert, später Philosophy, Politics &amp; Economics. Sieben Jahre habe ich am Fraunhofer-Institut für System- und Innovationsforschung und bei VDI/VDE Innovation + Technik Foresight-Studien für den öffentlichen Sektor verfasst — unter anderem für das Büro für Technikfolgen-Abschätzung beim Deutschen Bundestag.</p>
+      <p>Daneben habe ich eine Ausbildung als systemische Beraterin und Therapeutin abgeschlossen und das <em>Life Repair Kit</em> gegründet — eine Praxis für Menschen, die durch Krise und Transformation gehen.</p>
+      <p>Heute lehre ich Foresight an der Freien Universität Berlin, berate Organisationen, halte Vorträge — und baue <em>Heartfelt Futures</em>: eine Praxis, die wissenschaftliche Foresight mit systemischer Klarheit, verkörpertem Wissen und Ästhetik verbindet.</p>
+    </div>
+    <div>
+      <div class="about-img">
+        <div class="img-placeholder">Porträt · Studio</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 60ch) 340px;
+    gap: clamp(12px, 1.5vw, 24px);
+    align-items: center;
+    justify-content: center;
+  }
+  .about-text { max-width: 64ch; font-size: 16px; line-height: 1.65; }
+  .about-text :global(p) { color: var(--ink-2); }
+  .about-text :global(p:first-of-type::first-letter) {
+    font-family: var(--serif);
+    font-size: 5.4em;
+    float: left;
+    line-height: 0.85;
+    margin: 0.04em 0.08em 0 0;
+    color: var(--ink);
+    font-style: normal;
+  }
+  .about-img {
+    aspect-ratio: 4 / 5;
+    background: var(--paper-2);
+    position: relative;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  @media (max-width: 880px) {
+    .about { grid-template-columns: 1fr; }
+    .about-img { aspect-ratio: 3 / 4; max-width: 380px; }
+  }
+</style>

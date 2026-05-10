@@ -1,0 +1,63 @@
+---
+---
+<section class="hero">
+  <div>
+    <h1 class="hero-display">
+      <span class="ital accent">fühlen.</span><br>
+      denken.<br>
+      gestalten.
+    </h1>
+    <p class="hero-intro">
+      Lia Meissner — Zukunftsforscherin, Psychologin und Strategin für Heartfelt Futures
+    </p>
+  </div>
+  <div class="hero-img-wrap">
+    <div class="hero-img">
+      <div class="img-placeholder">Hero · Lia im Mast</div>
+    </div>
+    <div class="hero-img-caption"></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: clamp(40px, 6vw, 80px) var(--pad-x) clamp(60px, 8vw, 100px);
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: clamp(28px, 5vw, 56px);
+    align-items: start;
+  }
+  .hero-display {
+    margin-top: clamp(20px, 3vw, 36px);
+    font-family: var(--serif);
+    font-size: clamp(72px, 13vw, 176px);
+    line-height: 0.86;
+    letter-spacing: -0.022em;
+  }
+  .hero-display :global(.ital) { font-style: italic; }
+  .hero-display :global(.accent) { color: var(--accent); }
+  .hero-intro {
+    margin-top: clamp(24px, 4vw, 40px);
+    max-width: 480px;
+    font-size: clamp(15px, 1.3vw, 18px);
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+  .hero-img-wrap { display: flex; flex-direction: column; gap: 12px; }
+  .hero-img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--paper-2);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-img-caption {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-img { aspect-ratio: 3 / 4; }
+  }
+</style>
