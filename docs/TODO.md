@@ -37,7 +37,7 @@ Track of what's needed to ship `liameissner.me`.
 - [ ] Real ResearchGate URL
 - [ ] Real FU Berlin Anmeldung URL
 - [ ] Real Podcast URL
-- [ ] Real LinkedIn / Instagram / Substack URLs
+- [x] Real LinkedIn URL — `linkedin.com/in/liameissner` (Instagram + Substack dropped from launch)
 - [ ] Confirm Kontakt email (`hallo@liameissner.de` vs `.me`)
 - [ ] Impressum page
 - [ ] Datenschutz / DSGVO page
