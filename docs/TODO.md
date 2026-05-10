@@ -32,8 +32,8 @@ Track of what's needed to ship `liameissner.me`.
 - [ ] Reduced-motion users get no smooth scroll
 
 ## 4. Content polish
-- [ ] Hero portrait (Lia im Mast) — replace placeholder
-- [ ] About portrait (Studio) — replace placeholder
+- [x] Hero portrait (Lia im Mast) — replace placeholder
+- [x] About portrait (Studio) — replace placeholder
 - [ ] Real ResearchGate URL
 - [ ] Real FU Berlin Anmeldung URL
 - [ ] Real Podcast URL

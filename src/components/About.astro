@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import portraitImg from '../assets/about-portrait.jpg';
 ---
 <section class="section" id="uber">
   <div class="about">
@@ -11,7 +13,15 @@
     </div>
     <div>
       <div class="about-img">
-        <div class="img-placeholder">Porträt · Studio</div>
+        <Image
+          src={portraitImg}
+          alt="Porträt von Lia Meißner im Studio"
+          widths={[340, 480, 760]}
+          sizes="(max-width: 880px) 380px, 340px"
+          format="webp"
+          quality={85}
+          loading="lazy"
+        />
       </div>
     </div>
   </div>
@@ -42,6 +52,12 @@
     position: relative;
     overflow: hidden;
     margin-top: 8px;
+  }
+  .about-img :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   @media (max-width: 880px) {
     .about { grid-template-columns: 1fr; }
