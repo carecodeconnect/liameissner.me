@@ -11,6 +11,10 @@ type Pillar = {
   offers: Offer[];
 };
 
+// Auto-add target/rel for off-site links so we don't have to repeat it inline.
+const ext = (href: string) =>
+  /^https?:\/\//.test(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+
 const pillars: Pillar[] = [
   {
     num: '01',
@@ -28,7 +32,7 @@ const pillars: Pillar[] = [
       { title: 'Seltene Erden: Rohstoffsicherung in Europa · TAB', year: '2024' },
       { title: 'Innovative Schiffbaukonzepte · TAB', year: '2022' },
     ],
-    pubsLink: { href: '#', label: 'Vollständige Publikationsliste auf ResearchGate ↗' },
+    pubsLink: { href: 'https://www.researchgate.net/profile/Lia-Meissner', label: 'Vollständige Publikationsliste auf ResearchGate ↗' },
     offers: [
       {
         title: 'Angewandte Zukunftsforschung',
@@ -61,12 +65,12 @@ const pillars: Pillar[] = [
       {
         title: '1:1 Coaching',
         body: 'Einzelsitzungen bei Burnout, Long Covid, Trennung, Trauer, Berufs- und Sinnkrisen.',
-        link: { href: '#kontakt', label: '→ Termin buchen' },
+        link: { href: 'https://www.liferepairkit.com', label: '→ Termin buchen' },
       },
       {
         title: 'Life Repair Kit',
         body: 'Ein integratives Werkzeug für Menschen nach Krise — mit Praktiken für Körper, Nervensystem, Beziehungen und Sinn.',
-        link: { href: '#kontakt', label: '→ Webseite besuchen' },
+        link: { href: 'https://www.liferepairkit.com', label: '→ Webseite besuchen' },
       },
       {
         title: 'Resilienz-Workshops',
@@ -99,7 +103,7 @@ const pillars: Pillar[] = [
       {
         title: 'Heartfelt Futures Kollektiv',
         body: 'Ein Kollektiv aus Menschen, die an der Schnittstelle von Care, Foresight und Gestaltung arbeiten wollen.',
-        link: { href: '#kontakt', label: '→ Mitmachen' },
+        link: { href: '#kontakt', label: '→ Anfrage' },
       },
     ],
   },
@@ -137,7 +141,7 @@ const pillars: Pillar[] = [
                   </>
                 )}
                 {p.pubsLink && (
-                  <a class="link offer-link pubs-link" href={p.pubsLink.href}>{p.pubsLink.label}</a>
+                  <a class="link offer-link pubs-link" href={p.pubsLink.href} {...ext(p.pubsLink.href)}>{p.pubsLink.label}</a>
                 )}
               </div>
               <div>
@@ -145,7 +149,7 @@ const pillars: Pillar[] = [
                   <div class="offer">
                     <h4>{o.title}</h4>
                     <p>{o.body}</p>
-                    <a class="link offer-link" href={o.link.href}>{o.link.label}</a>
+                    <a class="link offer-link" href={o.link.href} {...ext(o.link.href)}>{o.link.label}</a>
                   </div>
                 ))}
               </div>
