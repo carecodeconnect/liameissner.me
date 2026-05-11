@@ -14,6 +14,13 @@ const title = titleOverride ?? copy.meta.title;
 const description = descriptionOverride ?? copy.meta.description;
 const otherHref = copy.nav.langSwitchHref;
 const otherLang = lang === 'de' ? 'en' : 'de';
+
+// Canonical URL and OG metadata
+const SITE_URL = 'https://liameissner.me';
+const canonicalUrl = SITE_URL + Astro.url.pathname;
+const ogImageUrl = SITE_URL + '/og-image.jpg';
+const ogLocale = lang === 'de' ? 'de_DE' : 'en_US';
+const ogLocaleAlternate = lang === 'de' ? 'en_US' : 'de_DE';
 ---
 <!doctype html>
 <html lang={copy.htmlLang}>
@@ -22,8 +29,29 @@ const otherLang = lang === 'de' ? 'en' : 'de';
   <title>{title}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="alternate" hreflang={otherLang} href={otherHref} />
   <link rel="alternate" hreflang="x-default" href="/" />
+
+  {/* Open Graph (LinkedIn, Slack, WhatsApp, Facebook, etc.) */}
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Lia Meißner — fühlen. denken. gestalten." />
+  <meta property="og:locale" content={ogLocale} />
+  <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+  <meta property="og:site_name" content="Lia Meißner" />
+
+  {/* Twitter / X Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
