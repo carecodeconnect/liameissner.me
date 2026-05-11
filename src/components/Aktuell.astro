@@ -1,58 +1,201 @@
 ---
 ---
 <section class="section" id="aktuell">
-  <div class="kicker">AKTUELL</div>
-  <h3>Lehre · Podcast.</h3>
-  <div class="aktuell-grid">
-    <div class="aktuell-item">
-      <h4>Lehre an der Freien Universität Berlin</h4>
-      <p>
-        <em>Inventing the Future</em> — Einführung in die Strategische Vorausschau<br>
-        <em>Einführung in die Szenariotechnik</em>
-      </p>
-      <a class="link offer-link" href="#">→ Zur Anmeldung</a>
+  <div class="aktuell-inner">
+    <div class="aktuell-head">
+      <div class="kicker">AKTUELLES</div>
+      <h3>Was gerade läuft.</h3>
     </div>
-    <div class="aktuell-item">
-      <h4>Podcast — <em>Wie weiter mit Zukunftsangst</em></h4>
-      <p>Im Gespräch über die Frage, wie wir der Angst vor der Zukunft etwas Tragfähiges entgegensetzen können.</p>
-      <a class="link offer-link" href="#">→ Zur Folge</a>
+
+    <div class="carousel-wrap">
+      <div class="carousel-nav carousel-nav-prev">
+        <button class="carousel-btn" data-dir="prev" aria-label="Zurück">←</button>
+      </div>
+
+      <div class="carousel-track" role="region" aria-label="Aktuelles Karussell">
+        <article class="tile">
+          <div class="tile-kicker">Podcast</div>
+          <h4>Jeden Sommer 45 Grad? Was dann?</h4>
+          <p>Interview im tagesschau Zukunfts-Podcast „Mal angenommen…“</p>
+          <time class="tile-date">29.07.2024</time>
+          <a class="link offer-link" href="https://www.tagesschau.de/multimedia/audio/podcast-mal-angenommen-hitzewellen-100.html" target="_blank" rel="noopener noreferrer">→ Jetzt anhören</a>
+        </article>
+
+        <article class="tile">
+          <div class="tile-kicker">Neue Studie</div>
+          <h4>People Analytics in der öffentlichen Verwaltung</h4>
+          <p>Studie fürs Büro für Technikfolgenabschätzung (TAB)</p>
+          <time class="tile-date">28. April 2026</time>
+          <a class="link offer-link" href="https://www.tab-beim-bundestag.de/projekte_nutzung-von-technologien-zur-auswertung-von-beschaeftigtendaten-in-der-oeffentlichen-verwaltung.php" target="_blank" rel="noopener noreferrer">→ Lesen</a>
+        </article>
+
+        <article class="tile">
+          <div class="tile-kicker">Podcast</div>
+          <h4>Wie umgehen mit Zukunftsangst?</h4>
+          <p>Interview im WIE WEITER Podcast</p>
+          <time class="tile-date">12. Mai 2026</time>
+          <a class="link offer-link" href="https://www.podcast.de/podcast/3473321/wie-weiter-loesungen-fuer-eine-gute-zukunft" target="_blank" rel="noopener noreferrer">→ Mehr erfahren</a>
+        </article>
+
+        <article class="tile">
+          <div class="tile-kicker">Lehre</div>
+          <h4>Einführung in die Strategische Vorausschau</h4>
+          <p>Online-Kurs an der Freien Universität Berlin</p>
+          <time class="tile-date">18. Mai 2026</time>
+          <a class="link offer-link" href="https://veranstaltung.weiterbildung.fu-berlin.de/Veranstaltung/cmx6890b44771615.html" target="_blank" rel="noopener noreferrer">→ Mehr erfahren</a>
+        </article>
+
+        <article class="tile">
+          <div class="tile-kicker">Lehre</div>
+          <h4>Vertiefungsworkshop Szenarioentwicklung</h4>
+          <p>Präsenz-Workshop an der Freien Universität Berlin</p>
+          <time class="tile-date">07. Dez 2026</time>
+          <a class="link offer-link" href="https://veranstaltung.weiterbildung.fu-berlin.de/Veranstaltung/cmx6890b537c15c4.html" target="_blank" rel="noopener noreferrer">→ Mehr erfahren</a>
+        </article>
+      </div>
+
+      <div class="carousel-nav carousel-nav-next">
+        <button class="carousel-btn" data-dir="next" aria-label="Weiter">→</button>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
+  /* Edged band — hairline rules above/below + extra breathing room mark this as
+     its own chapter without breaking the cream editorial flow. */
+  #aktuell {
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    padding-top: clamp(80px, 11vw, 140px);
+    padding-bottom: clamp(80px, 11vw, 140px);
+  }
+  /* Slightly wider than About above so 4.5 tiles can stay legible — a common
+     editorial pattern (narrower text block, wider card row). */
+  .aktuell-inner {
+    max-width: 1080px;
+    margin-inline: auto;
+  }
   h3 {
     font-size: clamp(28px, 4vw, 44px);
-    margin-bottom: 28px;
+    margin: 4px 0 0 0;
   }
-  .aktuell-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(32px, 4vw, 56px);
-    border-top: 2px solid var(--rule);
-    padding-top: clamp(36px, 5vw, 56px);
+  .aktuell-head {
+    margin-bottom: clamp(28px, 4vw, 40px);
   }
-  @media (max-width: 760px) { .aktuell-grid { grid-template-columns: 1fr; } }
 
-  .aktuell-item { margin-bottom: 32px; max-width: 52ch; }
-  .aktuell-item :global(h4) {
-    font-family: var(--serif);
-    font-size: 20px;
-    margin: 0 0 8px 0;
-    font-weight: 400;
+  /* Carousel: track width matches About above; 3 square tiles visible, 4th scrolls in.
+     Arrows sit outside the inner column (in the section's padding), vertically
+     centered on the tile row, so the visible tiles stay flush with About. */
+  .carousel-wrap {
+    position: relative;
   }
-  .aktuell-item :global(p) {
-    font-size: 15px;
-    line-height: 1.6;
-    max-width: none;
+  .carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    z-index: 1;
+  }
+  .carousel-nav-prev { left: -56px; }
+  .carousel-nav-next { right: -56px; }
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 18px;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+  }
+  .carousel-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .carousel-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: clamp(14px, 1.6vw, 20px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    scroll-padding-inline: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-track { scroll-behavior: auto; }
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+
+  .tile {
+    /* 3.5 tiles + 3 gaps visible — half-tile at the right edge signals
+       that more content is offscreen. */
+    flex: 0 0 calc((100% - 3 * clamp(14px, 1.6vw, 20px)) / 3.5);
+    aspect-ratio: 1 / 1;
+    scroll-snap-align: start;
+    background: var(--paper-2);
+    padding: clamp(20px, 2.5vw, 28px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  /* Fixed slots — each element reserves a constant height so the layout
+     reads the same across all tiles regardless of copy length. */
+  .tile-kicker {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 12px 0;
+  }
+  .tile :global(h4) {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0 0 6px 0;
+    min-height: calc(3 * 1.2em);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .tile :global(p) {
+    font-size: 14px;
+    line-height: 1.5;
     color: var(--ink-2);
-    margin-bottom: 10px;
+    margin: 0;
+    max-width: none;
+    min-height: calc(2 * 1.5em);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  /* Date + CTA pinned to the bottom of every tile via margin-top:auto */
+  .tile-date {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: auto 0 6px 0;
   }
   .offer-link {
-    display: inline-block;
-    margin-top: 4px;
     font-size: 13px;
     font-family: var(--sans);
     letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 880px) {
+    .carousel-nav { display: none; }
+    .tile { flex-basis: 84%; aspect-ratio: auto; }
   }
 </style>
