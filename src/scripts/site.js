@@ -140,6 +140,60 @@ document.querySelectorAll('.carousel-nav .carousel-btn').forEach((btn) => {
   });
 });
 
+// About — sync portrait dimensions to the body-text height so the image's
+// top edge aligns with the subline ("Seit über zehn Jahren...") and the
+// bottom edge aligns with the last paragraph. Width derived from the 4:5
+// aspect ratio so the portrait framing stays unchanged.
+(function syncAboutPortrait() {
+  const text = document.querySelector('#uber .about-text');
+  const img = document.querySelector('#uber .about-img');
+  if (!text || !img) return;
+
+  const RATIO = 4 / 5; // width / height
+
+  function apply() {
+    // Mobile (single-column layout) — clear inline overrides and let CSS take over
+    if (window.matchMedia('(max-width: 880px)').matches) {
+      img.style.width = '';
+      img.style.height = '';
+      return;
+    }
+    const h = text.getBoundingClientRect().height;
+    if (h <= 0) return;
+    img.style.height = `${h}px`;
+    img.style.width = `${h * RATIO}px`;
+  }
+
+  // Run on initial load
+  apply();
+  // After web fonts settle (text height may change once fonts swap in)
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(apply);
+  }
+  // After all images/resources finish loading
+  window.addEventListener('load', apply);
+  // On viewport resize
+  window.addEventListener('resize', apply);
+  // React to any change in text content size (font loading, dynamic content)
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(apply).observe(text);
+  }
+})();
+
+// Language switcher — preserve the current section anchor when switching
+// so /#kontakt → /en/#kontakt, keeping the user at the same spot.
+document.querySelectorAll('[data-lang-switch]').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    const a = e.currentTarget;
+    const hash = window.location.hash;
+    if (hash) {
+      e.preventDefault();
+      const base = a.getAttribute('href');
+      window.location.href = base + hash;
+    }
+  });
+});
+
 // Mobile nav toggle
 const toggle = document.querySelector('.nav-toggle');
 const menu = document.querySelector('#mobile-menu');

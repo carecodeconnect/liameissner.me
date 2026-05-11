@@ -1,61 +1,39 @@
 ---
+import { t, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'de' } = Astro.props;
+const copy = t(lang).aktuell;
 ---
 <section class="section" id="aktuell">
   <div class="aktuell-inner">
     <div class="aktuell-head">
-      <div class="kicker">AKTUELLES</div>
-      <h3>Was gerade läuft.</h3>
+      <div class="kicker">{copy.kicker}</div>
+      <h3>{copy.headline}</h3>
     </div>
 
     <div class="carousel-wrap">
       <div class="carousel-nav carousel-nav-prev">
-        <button class="carousel-btn" data-dir="prev" aria-label="Zurück">←</button>
+        <button class="carousel-btn" data-dir="prev" aria-label={copy.prevLabel}>←</button>
       </div>
 
-      <div class="carousel-track" role="region" aria-label="Aktuelles Karussell">
-        <article class="tile">
-          <div class="tile-kicker">Podcast</div>
-          <h4>Jeden Sommer 45 Grad? Was dann?</h4>
-          <p>Interview im tagesschau Zukunfts-Podcast „Mal angenommen…“</p>
-          <time class="tile-date">29.07.2024</time>
-          <a class="link offer-link" href="https://www.tagesschau.de/multimedia/audio/podcast-mal-angenommen-hitzewellen-100.html" target="_blank" rel="noopener noreferrer">→ Jetzt anhören</a>
-        </article>
-
-        <article class="tile">
-          <div class="tile-kicker">Neue Studie</div>
-          <h4>People Analytics in der öffentlichen Verwaltung</h4>
-          <p>Studie fürs Büro für Technikfolgenabschätzung (TAB)</p>
-          <time class="tile-date">28. April 2026</time>
-          <a class="link offer-link" href="https://www.tab-beim-bundestag.de/projekte_nutzung-von-technologien-zur-auswertung-von-beschaeftigtendaten-in-der-oeffentlichen-verwaltung.php" target="_blank" rel="noopener noreferrer">→ Lesen</a>
-        </article>
-
-        <article class="tile">
-          <div class="tile-kicker">Podcast</div>
-          <h4>Wie umgehen mit Zukunftsangst?</h4>
-          <p>Interview im WIE WEITER Podcast</p>
-          <time class="tile-date">12. Mai 2026</time>
-          <a class="link offer-link" href="https://www.podcast.de/podcast/3473321/wie-weiter-loesungen-fuer-eine-gute-zukunft" target="_blank" rel="noopener noreferrer">→ Mehr erfahren</a>
-        </article>
-
-        <article class="tile">
-          <div class="tile-kicker">Lehre</div>
-          <h4>Einführung in die Strategische Vorausschau</h4>
-          <p>Online-Kurs an der Freien Universität Berlin</p>
-          <time class="tile-date">18. Mai 2026</time>
-          <a class="link offer-link" href="https://veranstaltung.weiterbildung.fu-berlin.de/Veranstaltung/cmx6890b44771615.html" target="_blank" rel="noopener noreferrer">→ Mehr erfahren</a>
-        </article>
-
-        <article class="tile">
-          <div class="tile-kicker">Lehre</div>
-          <h4>Vertiefungsworkshop Szenarioentwicklung</h4>
-          <p>Präsenz-Workshop an der Freien Universität Berlin</p>
-          <time class="tile-date">07. Dez 2026</time>
-          <a class="link offer-link" href="https://veranstaltung.weiterbildung.fu-berlin.de/Veranstaltung/cmx6890b537c15c4.html" target="_blank" rel="noopener noreferrer">→ Mehr erfahren</a>
-        </article>
+      <div class="carousel-track" role="region" aria-label={copy.carouselLabel}>
+        {copy.cards.map((card) => (
+          <article class="tile">
+            <div class="tile-kicker">{card.kategorie}</div>
+            <h4>{card.titel}</h4>
+            <p>{card.untertitel}</p>
+            <time class="tile-date">{card.datum}</time>
+            <a class="link offer-link" href={card.href} target="_blank" rel="noopener noreferrer">{card.cta}</a>
+          </article>
+        ))}
       </div>
 
       <div class="carousel-nav carousel-nav-next">
-        <button class="carousel-btn" data-dir="next" aria-label="Weiter">→</button>
+        <button class="carousel-btn" data-dir="next" aria-label={copy.nextLabel}>→</button>
       </div>
     </div>
   </div>
@@ -155,14 +133,17 @@
     color: var(--muted);
     margin: 0 0 12px 0;
   }
+  /* Tile titles: Inter Semibold (600) instead of Instrument Serif, matching
+     the treatment used in the Arbeit accordion sub-headings. */
   .tile :global(h4) {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1.2;
+    font-family: var(--sans);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: 0;
     color: var(--ink);
     margin: 0 0 6px 0;
-    min-height: calc(3 * 1.2em);
+    min-height: calc(3 * 1.25em);
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

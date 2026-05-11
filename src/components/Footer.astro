@@ -1,16 +1,22 @@
 ---
+import { t, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'de' } = Astro.props;
+const fullCopy = t(lang);
+const copy = fullCopy.footer;
+const brand = fullCopy.brand;
 const year = new Date().getFullYear();
-const legalLinks = [
-  { href: '#', label: 'Impressum' },
-  { href: '#', label: 'Datenschutz' },
-];
 ---
 <footer class="footer">
   <div class="footer-grid">
-    <span class="footer-brand-name">Lia Meißner</span>
-    <div class="footer-social" aria-label="Soziale Medien">
+    <span class="footer-brand-name">{brand}</span>
+    <div class="footer-social" aria-label={copy.socialLabel}>
       <a href="https://www.linkedin.com/in/liameissner/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        <svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
       </a>
       <a href="https://liameissner.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="Substack">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22.54 8.24H1.46V5.4h21.08v2.84zM1.46 10.81V24L12 18.11 22.54 24V10.81H1.46zM22.54 0H1.46v2.84h21.08V0z"/></svg>
@@ -21,18 +27,21 @@ const legalLinks = [
   <hr class="footer-divider" />
 
   <div class="footer-bottom">
-    <span>© Lia Meißner {year}</span>
-    <nav class="footer-legal" aria-label="Rechtliches">
-      {legalLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+    <span>© {brand} {year}</span>
+    <nav class="footer-legal" aria-label={copy.legalAria}>
+      {copy.legal.map((l) => <a href={l.href}>{l.label}</a>)}
     </nav>
   </div>
 </footer>
 
 <style>
+  /* Dark footer — inverted from the cream body. Light text on ink ground,
+     social icons flip to light circles. */
   .footer {
     padding: clamp(48px, 6vw, 80px) var(--pad-x) clamp(24px, 3vw, 32px);
     font-family: var(--sans);
-    color: var(--ink-2);
+    background: var(--ink);
+    color: rgba(243, 239, 230, 0.6);
   }
   /* Constrained to the same 880px max-width as the contact form above,
      so the footer's left and right edges line up with the form fields.
@@ -50,11 +59,11 @@ const legalLinks = [
   .footer-brand-name {
     font-family: var(--serif);
     font-size: clamp(24px, 2.4vw, 32px);
-    color: var(--ink);
+    color: var(--paper);
     letter-spacing: 0;
   }
 
-  /* Round social icons — solid ink circles, accent fill on hover. */
+  /* Round social icons — light circles on dark ground, accent fill on hover. */
   .footer-social {
     display: flex;
     gap: 10px;
@@ -66,11 +75,14 @@ const legalLinks = [
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: var(--ink);
-    color: var(--paper);
-    transition: background .15s ease, transform .15s ease;
+    background: var(--paper);
+    color: var(--ink);
+    transition: background .15s ease, color .15s ease;
   }
-  .footer-social :global(a:hover) { background: var(--accent); }
+  .footer-social :global(a:hover) {
+    background: var(--accent);
+    color: var(--paper);
+  }
   .footer-social :global(svg) {
     width: 16px;
     height: 16px;
@@ -78,11 +90,10 @@ const legalLinks = [
     display: block;
   }
 
-  /* Full-width hairline — spans the section content area (viewport minus pad-x),
-     not limited to the 880px form-aligned column below. */
+  /* Full-width hairline — light tone on the dark ground. */
   .footer-divider {
     border: 0;
-    border-top: 1px solid var(--rule-soft);
+    border-top: 1px solid rgba(243, 239, 230, 0.18);
     margin: 0;
     width: 100%;
   }
@@ -97,14 +108,14 @@ const legalLinks = [
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: rgba(243, 239, 230, 0.55);
   }
   .footer-legal {
     display: flex;
     gap: clamp(16px, 2vw, 24px);
   }
   .footer-legal :global(a) {
-    color: var(--muted);
+    color: rgba(243, 239, 230, 0.55);
     transition: color .15s ease;
   }
   .footer-legal :global(a:hover) { color: var(--accent); }

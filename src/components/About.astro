@@ -1,64 +1,96 @@
 ---
 import { Image } from 'astro:assets';
 import portraitImg from '../assets/about-portrait.jpg';
+import { t, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'de' } = Astro.props;
+const copy = t(lang).about;
 ---
 <section class="section" id="uber">
   <div class="about">
-    <div class="about-text">
-      <div class="kicker">ÜBER MICH</div>
-      <p class="about-lede">Ich bin Lia Meißner. Seit über zehn Jahren arbeite ich an der Schnittstelle von Zukunftsforschung, Psychologie und künstlerischer Praxis.</p>
-      <p>Ich habe Psychologie und Soziologie studiert, später Philosophy, Politics &amp; Economics. Sieben Jahre habe ich am Fraunhofer-Institut für System- und Innovationsforschung und bei VDI/VDE Innovation + Technik Foresight-Studien für den öffentlichen Sektor verfasst — unter anderem für das Büro für Technikfolgen-Abschätzung beim Deutschen Bundestag.</p>
-      <p>Daneben habe ich eine Ausbildung als systemische Beraterin und Therapeutin abgeschlossen und das <em>Life Repair Kit</em> gegründet — eine Praxis für Menschen, die durch Krise und Transformation gehen.</p>
-      <p>Heute lehre ich Foresight an der Freien Universität Berlin, berate Organisationen, halte Vorträge — und baue <em>Heartfelt Futures</em>: eine Praxis, die wissenschaftliche Foresight mit systemischer Klarheit, verkörpertem Wissen und Ästhetik verbindet.</p>
+    <div class="about-head">
+      <div class="kicker">{copy.kicker}</div>
+      <p class="about-statement">{copy.statement}</p>
     </div>
-    <div>
-      <div class="about-img">
-        <Image
-          src={portraitImg}
-          alt="Porträt von Lia Meißner im Studio"
-          widths={[340, 480, 760]}
-          sizes="(max-width: 880px) 380px, 340px"
-          format="webp"
-          quality={85}
-          loading="lazy"
-        />
-      </div>
+    <div class="about-text">
+      <p class="about-subline">{copy.subline}</p>
+      {copy.paragraphsHtml.map((html) => <p set:html={html}></p>)}
+    </div>
+    <div class="about-img">
+      <Image
+        src={portraitImg}
+        alt={copy.imageAlt}
+        widths={[380, 480, 640, 760]}
+        sizes="(max-width: 880px) 380px, 40vw"
+        format="webp"
+        quality={85}
+        loading="lazy"
+      />
     </div>
   </div>
 </section>
 
 <style>
+  /* Two-row grid: kicker+statement on top (col 1 only, image col empty),
+     then subline+body | image side-by-side. Image dimensions are set by JS
+     so its height matches the text exactly; CSS provides the default fallback. */
   .about {
     display: grid;
-    grid-template-columns: minmax(0, 60ch) 340px;
-    gap: clamp(12px, 1.5vw, 24px);
-    align-items: center;
+    grid-template-columns: minmax(0, 60ch) auto;
+    grid-template-areas:
+      "head ."
+      "text img";
+    column-gap: clamp(16px, 2.5vw, 40px);
+    row-gap: clamp(20px, 2.6vw, 32px);
+    align-items: start;
     justify-content: center;
   }
-  .about-text { max-width: 64ch; font-size: 16px; line-height: 1.65; }
+  .about-head {
+    grid-area: head;
+    max-width: 64ch;
+  }
+  .about-text {
+    grid-area: text;
+    max-width: 64ch;
+    font-size: 16px;
+    line-height: 1.65;
+  }
   .about-text :global(p) { color: var(--ink-2); }
-  .about-text :global(.about-lede) {
+  /* Statement — serif display headline. */
+  .about-head :global(.about-statement) {
     font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.2em;
-    line-height: 1.45;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1;
+    letter-spacing: -0.015em;
     color: var(--ink);
+    max-width: none;
+    margin: 0;
   }
-  .about-text :global(p:first-of-type::first-letter) {
-    font-family: var(--serif);
-    font-size: 5.4em;
-    float: left;
-    line-height: 0.85;
-    margin: 0.04em 0.08em 0 0;
+  /* Subline — sits as the lede of the body column; spacing to body via margin. */
+  .about-text :global(.about-subline) {
+    font-family: var(--sans);
+    font-size: clamp(17px, 1.5vw, 20px);
+    font-weight: 400;
+    line-height: 1.5;
     color: var(--ink);
-    font-style: normal;
+    max-width: none;
+    margin: 0 0 clamp(24px, 3vw, 36px) 0;
   }
+  /* Image: dimensions set dynamically via JS (height = text body height,
+     width = height × 4/5). CSS fallback if JS hasn't run yet keeps the
+     portrait at its native 4:5 framing. */
   .about-img {
+    grid-area: img;
     aspect-ratio: 4 / 5;
+    width: 380px;
     background: var(--paper-2);
     position: relative;
     overflow: hidden;
-    margin-top: 8px;
   }
   .about-img :global(img) {
     width: 100%;
@@ -67,7 +99,10 @@ import portraitImg from '../assets/about-portrait.jpg';
     display: block;
   }
   @media (max-width: 880px) {
-    .about { grid-template-columns: 1fr; }
-    .about-img { aspect-ratio: 3 / 4; max-width: 380px; }
+    .about {
+      grid-template-columns: 1fr;
+      grid-template-areas: "head" "text" "img";
+    }
+    .about-img { aspect-ratio: 3 / 4; height: auto; max-width: 380px; }
   }
 </style>

@@ -1,123 +1,27 @@
 ---
-type Offer = { title: string; body: string; link: { href: string; label: string } };
-type Pillar = {
-  num: string;
-  id: string;
-  title: string;
-  blurb: string;
-  intro: { heading: string; body: string };
-  pubs?: { title: string; year: string }[];
-  pubsLink?: { href: string; label: string };
-  offers: Offer[];
-};
+import { t, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'de' } = Astro.props;
+const copy = t(lang).pillars;
+const pillars = copy.items;
 
 // Auto-add target/rel for off-site links so we don't have to repeat it inline.
 const ext = (href: string) =>
   /^https?:\/\//.test(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
-
-const pillars: Pillar[] = [
-  {
-    num: '01',
-    id: 'p1',
-    title: 'Strategic Foresight',
-    blurb:
-      'Strategie braucht Klarheit und die kommt aus guter Analyse und gekonnter Antizipation. Ich praktiziere und Lehre Foresight-Methoden und berate mit Freude und Präsenz. Unternehmen, Ministerien und innovative Projekte.',
-    intro: {
-      heading: 'Foresight-Arbeit',
-      body: 'Seit über sieben Jahren arbeite ich als wissenschaftliche Foresight-Praktikerin — am Fraunhofer ISI, bei VDI/VDE Innovation + Technik und als selbstständige Beraterin. Im Zentrum steht nicht Vorhersage, sondern Sensemaking: Annahmen prüfen, blinde Flecken aufdecken, tragfähige Optionen entwickeln.',
-    },
-    pubs: [
-      { title: '7 Foresight-Methoden zur erfolgreichen Strategieentwicklung', year: '2024' },
-      { title: 'Gesellschaftliche Auswirkungen hybrider Arbeitsformen · TAB', year: '2024' },
-      { title: 'Seltene Erden: Rohstoffsicherung in Europa · TAB', year: '2024' },
-      { title: 'Innovative Schiffbaukonzepte · TAB', year: '2022' },
-    ],
-    pubsLink: { href: 'https://www.researchgate.net/profile/Lia-Meissner', label: 'Vollständige Publikationsliste auf ResearchGate ↗' },
-    offers: [
-      {
-        title: 'Angewandte Zukunftsforschung',
-        body: 'Forschungs- und Strategieprojekte für Organisationen mit komplexen Zukunftsfragen. Erfahrung u. a. mit Bundesministerien, Bundestags-TAB, Umweltbundesamt, Stiftungen, NGOs.',
-        link: { href: '#kontakt', label: '→ Projekt anfragen' },
-      },
-      {
-        title: 'Keynotes',
-        body: 'Vorträge zu Foresight, Zukunftsangst, alternativen Zukünften und verkörperter Zukunftsforschung — für Konferenzen, Strategie-Klausuren und Hochschulen.',
-        link: { href: '#kontakt', label: '→ Keynote anfragen' },
-      },
-      {
-        title: 'Foresight-Weiterbildung',
-        body: 'Ich lehre Foresight an der FU Berlin und biete maßgeschneiderte Trainings für Organisationen an — vom eintägigen Crashkurs bis zum mehrteiligen Curriculum.',
-        link: { href: '#kontakt', label: '→ Weiterbildung anfragen' },
-      },
-    ],
-  },
-  {
-    num: '02',
-    id: 'p2',
-    title: 'Systemic Therapy',
-    blurb:
-      'Wohin mit all dem verdammten Schmerz?! Veränderung kann richtig weh tun. Krise, Krankheit, Burnout, der Verlust eines Menschen oder eines Gewissheit. Du musst da nicht alleine durch. Genau dafür habe ich das Life Repair Kit gegründet.',
-    intro: {
-      heading: 'Systemische Begleitung',
-      body: 'Ich bin ausgebildete systemische Beraterin und Therapeutin und arbeite mit Menschen in tiefgreifenden Übergängen. Meine Arbeit verbindet systemisches Denken, Embodiment, Nervensystem-Regulation und Resilienzforschung — nicht für schnelles Funktionieren, sondern für tragfähiges Wieder-Aufbauen.',
-    },
-    offers: [
-      {
-        title: '1:1 Coaching',
-        body: 'Einzelsitzungen bei Burnout, Long Covid, Trennung, Trauer, Berufs- und Sinnkrisen.',
-        link: { href: 'https://www.liferepairkit.com', label: '→ Termin buchen' },
-      },
-      {
-        title: 'Life Repair Kit',
-        body: 'Ein integratives Werkzeug für Menschen nach Krise — mit Praktiken für Körper, Nervensystem, Beziehungen und Sinn.',
-        link: { href: 'https://www.liferepairkit.com', label: '→ Webseite besuchen' },
-      },
-      {
-        title: 'Resilienz-Workshops',
-        body: 'Für Teams und Organisationen. Burnout entsteht in Strukturen — genau dort setzen meine Workshops an.',
-        link: { href: '#kontakt', label: '→ Workshop anfragen' },
-      },
-    ],
-  },
-  {
-    num: '03',
-    id: 'p3',
-    title: 'Speculative Design',
-    blurb:
-      '„There is no alternative" ist eine der größten Lügen unserer Zeit. Es gibt andere Zukünfte — und wir können sie gemeinsam erschaffen. In meinem Studio Heartfelt Futures entwickle ich — allein und im Werden eines Kollektivs — Bilder, Räume und Praktiken alternativer Zukünfte, die um Liebe, Care und Zugehörigkeit gebaut sind.',
-    intro: {
-      heading: 'Heartfelt Futures Studio',
-      body: 'Hier entstehen Bilder, Räume und Workshops, die Foresight mit Gestaltung und körperlicher Praxis verbinden. Wo andere Zukunftsforschung in Reports endet, fängt meine Arbeit an: bei der Frage, wie sich eine Zukunft anfühlen würde, in der wir gut leben.',
-    },
-    offers: [
-      {
-        title: 'Speculative Design Studio',
-        body: 'Bilder, Objekte, Texte und Räume, die alternative Zukünfte sichtbar machen. Aufträge möglich für Organisationen, Stiftungen und Institutionen.',
-        link: { href: '#kontakt', label: '→ Anfrage' },
-      },
-      {
-        title: 'Visioning-Workshops',
-        body: 'Zukünfte werden hier nicht am Whiteboard entworfen, sondern mit Körper, Material und Imagination. Foresight trifft Speculative Design.',
-        link: { href: '#kontakt', label: '→ Workshop anfragen' },
-      },
-      {
-        title: 'Heartfelt Futures Kollektiv',
-        body: 'Ein Kollektiv aus Menschen, die an der Schnittstelle von Care, Foresight und Gestaltung arbeiten wollen.',
-        link: { href: '#kontakt', label: '→ Anfrage' },
-      },
-    ],
-  },
-];
 ---
 <section class="section pillars-section" id="arbeit">
-  <div class="kicker">MEINE ARBEIT</div>
+  <div class="kicker">{copy.kicker}</div>
   <div class="pillars">
     {pillars.map((p) => (
       <article class="pillar" data-open="false">
         <button class="pillar-head" aria-controls={`${p.id}-body`} aria-expanded="false">
           <span class="pillar-num">{p.num}</span>
           <span class="pillar-title">{p.title}</span>
-          <span class="pillar-blurb">{p.blurb}</span>
+          <span class="pillar-blurb" set:html={p.blurb}></span>
           <span class="pillar-toggle" aria-hidden="true">+</span>
         </button>
         <div class="pillar-body" id={`${p.id}-body`}>
@@ -129,7 +33,7 @@ const pillars: Pillar[] = [
                 <p>{p.intro.body}</p>
                 {p.pubs && (
                   <>
-                    <div class="kicker pubs-kicker">Veröffentlichungen (Auswahl)</div>
+                    <div class="kicker pubs-kicker">{copy.pubsKicker}</div>
                     <ul class="pubs">
                       {p.pubs.map((pub) => (
                         <li>
@@ -211,7 +115,7 @@ const pillars: Pillar[] = [
   .pillar-toggle {
     font-family: var(--sans);
     font-weight: 400;
-    font-size: 32px;
+    font-size: 48px;
     text-align: right;
     padding-top: 4px;
     color: var(--ink);
@@ -235,11 +139,15 @@ const pillars: Pillar[] = [
     gap: clamp(20px, 3vw, 40px);
   }
   .pillar-body-content > .spacer { display: block; }
+  /* Sub-headings inside the accordion bodies: Inter Semibold (600) instead of
+     Instrument Serif Regular, because Instrument Serif ships in one weight only
+     and faux-bold looks rough. Sans bold gives a clean typographic step. */
   .pillar-body-content :global(h4) {
-    font-family: var(--serif);
-    font-size: 22px;
+    font-family: var(--sans);
+    font-size: 19px;
     margin: 0 0 10px 0;
-    font-weight: 400;
+    font-weight: 600;
+    letter-spacing: 0;
   }
   .pillar-body-content :global(p) {
     font-size: 15px;
@@ -257,9 +165,13 @@ const pillars: Pillar[] = [
   }
   .pubs-kicker { margin-top: 36px; margin-bottom: 12px; }
   .pubs-link { margin-top: 16px; }
+  .pubs {
+    max-width: 480px;
+  }
   .pubs :global(li) {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     gap: 16px;
     padding: 10px 0;
     border-top: 1px solid var(--rule-soft);
@@ -267,12 +179,15 @@ const pillars: Pillar[] = [
     line-height: 1.4;
   }
   .pubs :global(li:last-child) { border-bottom: 1px solid var(--rule-soft); }
-  .pubs :global(.year) { color: var(--muted); flex-shrink: 0; }
+  .pubs :global(.year) { color: var(--muted); }
 
   @media (max-width: 880px) {
-    .pillar-head { grid-template-columns: 60px 1fr 30px; }
-    .pillar-blurb { display: none; }
-    .pillar-body-content { grid-template-columns: 1fr; }
+    .pillar-head,
+    .pillar-body-content {
+      grid-template-columns: 1fr;
+    }
+    .pillar-blurb { padding-top: 8px; }
+    .pillar-toggle { text-align: left; }
     .pillar-body-content > .spacer { display: none; }
   }
 </style>

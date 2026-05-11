@@ -1,25 +1,29 @@
 ---
 import '../styles/global.css';
+import { t, type Lang } from '../i18n/translations';
 
 interface Props {
   title?: string;
   description?: string;
-  lang?: string;
+  lang?: Lang;
 }
 
-const {
-  title = 'Lia Meißner — Heartfelt Futures',
-  description = 'Lia Meißner — Zukunftsforscherin, Psychologin und Strategin für Heartfelt Futures. Eine Praxis zwischen Foresight, somatischer Arbeit und Speculative Design.',
-  lang = 'de',
-} = Astro.props;
+const { lang = 'de', title: titleOverride, description: descriptionOverride } = Astro.props;
+const copy = t(lang);
+const title = titleOverride ?? copy.meta.title;
+const description = descriptionOverride ?? copy.meta.description;
+const otherHref = copy.nav.langSwitchHref;
+const otherLang = lang === 'de' ? 'en' : 'de';
 ---
 <!doctype html>
-<html lang={lang}>
+<html lang={copy.htmlLang}>
 <head>
   <meta charset="utf-8" />
   <title>{title}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content={description} />
+  <link rel="alternate" hreflang={otherLang} href={otherHref} />
+  <link rel="alternate" hreflang="x-default" href="/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link

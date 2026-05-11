@@ -1,23 +1,32 @@
 ---
 import { Image } from 'astro:assets';
 import heroImg from '../assets/hero.jpg';
+import { t, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'de' } = Astro.props;
+const copy = t(lang).hero;
 ---
 <section class="hero">
   <div>
     <h1 class="hero-display">
-      <span class="ital accent">fühlen.</span><br>
-      denken.<br>
-      gestalten.
+      {copy.headlineLines.map((line, i) => (
+        <>
+          <span class:list={[{ ital: line.italic, accent: line.accent }]}>{line.text}</span>
+          {i < copy.headlineLines.length - 1 && <br />}
+        </>
+      ))}
     </h1>
-    <p class="hero-intro">
-      Lia Meissner — Zukunftsforscherin, Psychologin und Strategin für Heartfelt Futures
-    </p>
+    <p class="hero-intro">{copy.intro}</p>
   </div>
   <div class="hero-img-wrap">
     <div class="hero-img">
       <Image
         src={heroImg}
-        alt="Lia Meißner im Mast eines Segelschiffs"
+        alt={copy.imageAlt}
         widths={[480, 768, 1024, 1280, 1600]}
         sizes="(max-width: 880px) 100vw, 45vw"
         format="webp"
@@ -26,7 +35,7 @@ import heroImg from '../assets/hero.jpg';
         fetchpriority="high"
       />
     </div>
-    <div class="hero-img-caption"></div>
+    <p class="hero-img-caption" set:html={copy.captionHtml}></p>
   </div>
 </section>
 
@@ -69,8 +78,11 @@ import heroImg from '../assets/hero.jpg';
     display: block;
   }
   .hero-img-caption {
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    margin: 0;
+    max-width: none;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
     color: var(--muted);
   }
   @media (max-width: 880px) {

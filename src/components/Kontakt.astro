@@ -1,50 +1,56 @@
 ---
-const anliegen = [
-  'Foresight Studie',
-  'Lehre',
-  'Keynote',
-  'Workshop',
-  '1:1 Coaching',
-  'Presse / Medien',
-  'Anderes',
-];
+import { t, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'de' } = Astro.props;
+const copy = t(lang).kontakt;
 ---
 <section class="section" id="kontakt">
-  <div class="kicker">SAG HALLO</div>
+  <div class="kicker">{copy.kicker}</div>
   <div class="kontakt-head">
-    <h3>Schreib mir.</h3>
-    <p class="kontakt-intro">
-      Schreib mir, wenn du mit mir arbeiten möchtest — als Organisation, als Einzelperson, oder als Teil dessen, was Heartfelt Futures werden wird.
-    </p>
+    <h3>{copy.headline}</h3>
+    <p class="kontakt-intro">{copy.intro}</p>
   </div>
 
-  <form class="kontakt-form" method="post" action="#" novalidate>
+  <form class="kontakt-form" method="POST" action="https://api.web3forms.com/submit" novalidate>
+    {/* Web3Forms config — sends submissions to the email registered with the access key.
+        To activate: register the email at https://web3forms.com,
+        paste the access key below, then push. */}
+    <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+    <input type="hidden" name="subject" value={copy.web3FormsSubject}>
+    <input type="hidden" name="from_name" value={copy.web3FormsFromName}>
+    {/* Honeypot — bots typically fill every field; humans never see this one. */}
+    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
     <div class="form-row">
       <div class="form-field">
-        <label class="form-label" for="f-name">Name <span class="req">*</span></label>
-        <input class="form-input" id="f-name" name="name" type="text" placeholder="Vor- und Nachname" required>
+        <label class="form-label" for="f-name">{copy.labels.name} <span class="req">*</span></label>
+        <input class="form-input" id="f-name" name="name" type="text" placeholder={copy.placeholders.name} required>
       </div>
       <div class="form-field">
-        <label class="form-label" for="f-email">E-Mail <span class="req">*</span></label>
-        <input class="form-input" id="f-email" name="email" type="email" placeholder="name@beispiel.de" required>
+        <label class="form-label" for="f-email">{copy.labels.email} <span class="req">*</span></label>
+        <input class="form-input" id="f-email" name="email" type="email" placeholder={copy.placeholders.email} required>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-field">
-        <label class="form-label" for="f-phone">Telefon</label>
-        <input class="form-input" id="f-phone" name="phone" type="tel" placeholder="optional">
+        <label class="form-label" for="f-phone">{copy.labels.phone}</label>
+        <input class="form-input" id="f-phone" name="phone" type="tel" placeholder={copy.placeholders.phone}>
       </div>
       <div class="form-field">
-        <label class="form-label" for="f-org">Organisation</label>
-        <input class="form-input" id="f-org" name="org" type="text" placeholder="optional">
+        <label class="form-label" for="f-org">{copy.labels.org}</label>
+        <input class="form-input" id="f-org" name="org" type="text" placeholder={copy.placeholders.org}>
       </div>
     </div>
 
     <div class="form-field">
-      <span class="form-label">Anliegen <span class="req">*</span></span>
-      <div class="chip-group" role="group" aria-label="Anliegen">
-        {anliegen.map((a) => (
+      <span class="form-label">{copy.labels.anliegen} <span class="req">*</span></span>
+      <div class="chip-group" role="group" aria-label={copy.anliegenAria}>
+        {copy.anliegen.map((a) => (
           <button type="button" class="chip" role="checkbox" aria-checked="false">{a}</button>
         ))}
       </div>
@@ -52,13 +58,13 @@ const anliegen = [
     </div>
 
     <div class="form-field">
-      <label class="form-label" for="f-msg">Nachricht <span class="req">*</span></label>
-      <textarea class="form-textarea" id="f-msg" name="message" placeholder="Worum geht es? Erzähl mir kurz, was du dir vorstellst." required></textarea>
+      <label class="form-label" for="f-msg">{copy.labels.message} <span class="req">*</span></label>
+      <textarea class="form-textarea" id="f-msg" name="message" placeholder={copy.placeholders.message} required></textarea>
     </div>
 
     <div class="form-footer">
-      <span class="form-note">* Pflichtfelder · Daten gemäß DSGVO</span>
-      <button type="submit" class="form-submit">Nachricht senden →</button>
+      <span class="form-note">{copy.note}</span>
+      <button type="submit" class="form-submit">{copy.submit}</button>
     </div>
   </form>
 </section>
@@ -127,6 +133,7 @@ const anliegen = [
     color: var(--ink);
     background: var(--paper);
     border: 0;
+    border-radius: 4px;
     padding: 12px 16px;
     width: 100%;
     transition: box-shadow .2s, background .2s;
@@ -173,6 +180,7 @@ const anliegen = [
     color: var(--ink);
     background: var(--paper);
     border: 0;
+    border-radius: 4px;
     padding: 10px 14px;
     cursor: pointer;
     transition: box-shadow .2s, background .2s, color .2s;

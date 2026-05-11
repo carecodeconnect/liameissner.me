@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout
+  lang="de"
+  title="Impressum — Lia Meißner"
+  description="Impressum gemäß § 5 TMG für liameissner.me"
+>
+  <Nav lang="de" />
+  <main class="section legal">
+    <div class="legal-inner">
+      <h1>Impressum</h1>
+      <p class="legal-lede">Angaben gemäß § 5 TMG</p>
+
+      <h2>Anbieterin</h2>
+      <p>
+        Lia Meißner<br>
+        Berlin, Deutschland
+      </p>
+      <p>
+        Ladungsfähige Geschäftsadresse auf Anfrage.
+      </p>
+
+      <h2>Kontakt</h2>
+      <p>
+        Kontakt über das <a href="/#kontakt">Kontaktformular</a> auf liameissner.me
+      </p>
+
+      <h2>Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV</h2>
+      <p>Lia Meißner (Anschrift wie oben)</p>
+
+      <h2>EU-Streitschlichtung</h2>
+      <p>
+        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a><br>
+        Sie erreichen mich über das oben genannte Kontaktformular.
+      </p>
+
+      <h2>Verbraucherstreitbeilegung</h2>
+      <p>
+        Hinweis gemäß § 36 Verbraucherstreitbeilegungsgesetz (VSBG):
+        Ich bin weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer
+        Verbraucherschlichtungsstelle teilzunehmen.
+      </p>
+
+      <h2>Haftungsausschluss</h2>
+
+      <h3>Haftung für Inhalte</h3>
+      <p>
+        Die Inhalte dieser Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
+        Vollständigkeit und Aktualität der Inhalte kann ich jedoch keine Gewähr übernehmen.
+        Als Diensteanbieterin bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten
+        nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin ich jedoch nicht
+        verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder
+        nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+      </p>
+
+      <h3>Haftung für Links</h3>
+      <p>
+        Mein Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte ich keinen
+        Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter
+        oder Betreiber verantwortlich. Bei Bekanntwerden von Rechtsverletzungen werde ich
+        derartige Links umgehend entfernen.
+      </p>
+
+      <h3>Urheberrecht</h3>
+      <p>
+        Die durch mich erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
+        Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung
+        außerhalb der Grenzen des Urheberrechtes bedürfen meiner schriftlichen Zustimmung.
+        Inhalte Dritter werden als solche gekennzeichnet. Sollten Sie dennoch auf eine
+        Urheberrechtsverletzung aufmerksam werden, bitte ich um einen Hinweis. Bei
+        Bekanntwerden werde ich entsprechende Inhalte umgehend entfernen.
+      </p>
+
+      <h2>Disclaimer Coaching &amp; Beratung</h2>
+      <p>
+        Mein Coaching und meine Beratungsangebote ersetzen keine ärztliche oder
+        psychotherapeutische Behandlung. Ich stelle keine Diagnosen und gebe keine
+        Heilversprechen ab.
+      </p>
+    </div>
+  </main>
+  <Footer lang="de" />
+</BaseLayout>
+
+<style>
+  .legal {
+    padding-top: clamp(60px, 8vw, 110px);
+    padding-bottom: clamp(60px, 8vw, 110px);
+  }
+  .legal-inner {
+    max-width: 70ch;
+    margin: 0 auto;
+  }
+  .legal :global(h1) {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    margin: 0 0 12px 0;
+  }
+  .legal-lede {
+    font-family: var(--sans);
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 clamp(40px, 5vw, 56px) 0;
+    max-width: none;
+  }
+  .legal :global(h2) {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin: clamp(32px, 4vw, 48px) 0 12px 0;
+  }
+  .legal :global(h3) {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0;
+    margin: 24px 0 8px 0;
+  }
+  .legal :global(p) {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-2);
+    margin: 0 0 1em 0;
+    max-width: none;
+  }
+  .legal :global(a) {
+    color: var(--accent);
+    word-break: break-word;
+  }
+  .legal :global(a:hover) {
+    opacity: 0.7;
+  }
+</style>
