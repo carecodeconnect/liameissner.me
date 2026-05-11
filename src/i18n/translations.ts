@@ -122,7 +122,7 @@ export const translations: Record<Lang, Translations> = {
     meta: {
       title: 'Lia Meißner — Heartfelt Futures',
       description:
-        'Lia Meißner — Zukunftsforscherin, Psychologin und Strategin für Heartfelt Futures. Eine Praxis zwischen Foresight, somatischer Arbeit und Speculative Design.',
+        'Lia Meißner — Zukunftsforscherin und Psychologin, Gründerin von Life Repair Kit & Heartfelt Futures.',
     },
     nav: {
       menuLabel: 'Menü',
@@ -370,7 +370,7 @@ export const translations: Record<Lang, Translations> = {
     meta: {
       title: 'Lia Meissner — Heartfelt Futures',
       description:
-        'Lia Meissner — future scientist, psychologist, and strategist for Heartfelt Futures. A practice between foresight, somatic work, and speculative design.',
+        'Lia Meissner — future scientist and psychologist, founder of Life Repair Kit & Heartfelt Futures.',
     },
     nav: {
       menuLabel: 'Menu',
