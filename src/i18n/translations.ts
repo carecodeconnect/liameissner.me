@@ -263,7 +263,7 @@ export const translations: Record<Lang, Translations> = {
       subline:
         'Seit über zehn Jahren arbeite ich an der Schnittstelle von Zukunftsforschung, Psychologie und künstlerischer Praxis.',
       paragraphsHtml: [
-        'Ich habe Psychologie und Soziologie studiert, später Philosophy, Politics &amp; Economics. Seit 2018 verfasse ich Foresight-Studien für den öffentlichen Sektor — am Fraunhofer-Institut für System- und Innovationsforschung, bei VDI/VDE Innovation + Technik für das Büro für Technikfolgen-Abschätzung beim Deutschen Bundestag.',
+        'Ich habe Psychologie und Soziologie an den Universitäten Frankfurt am Main und Zürich studiert, später Philosophy, Politics &amp; Economics in Witten/Herdecke und an der Stanford University. Seit 2018 verfasse ich Foresight-Studien für den öffentlichen Sektor — am Fraunhofer-Institut für System- und Innovationsforschung, bei VDI/VDE Innovation + Technik für das Büro für Technikfolgen-Abschätzung beim Deutschen Bundestag.',
         'Vieles, was ich über Antizipation, Teamwork und Entscheiden unter Unsicherheit weiß, habe ich auf hoher See gelernt — zuletzt bei meiner Atlantiküberquerung 2025 unter Segeln.',
         'Parallel dazu habe ich eine Ausbildung als systemische Beraterin und Therapeutin abgeschlossen und das <em>Life Repair Kit</em> gegründet — eine Praxis für Menschen, die durch Krise und Transformation gehen.',
         'Heute baue ich <em>Heartfelt Futures</em>: eine Praxis, die wissenschaftliche Foresight mit systemischer Klarheit, verkörpertem Wissen und Ästhetik verbindet. Ich lehre Foresight an der Freien Universität Berlin, berate Organisationen und halte Vorträge.',
@@ -512,7 +512,7 @@ export const translations: Record<Lang, Translations> = {
       subline:
         'For more than ten years I have worked at the intersection of futures research, psychology and artistic practice.',
       paragraphsHtml: [
-        'I studied psychology and sociology, later Philosophy, Politics &amp; Economics. Since 2018 I have been writing foresight studies for the public sector — at Fraunhofer-Institut für System- und Innovationsforschung, at VDI/VDE Innovation + Technik for the German Bundestag\'s Office of Technology Assessment.',
+        'I studied psychology and sociology at the universities of Frankfurt and Zurich, later Philosophy, Politics &amp; Economics at Witten/Herdecke and Stanford. Since 2018 I have been writing foresight studies for the public sector — at Fraunhofer-Institut für System- und Innovationsforschung, at VDI/VDE Innovation + Technik for the German Bundestag\'s Office of Technology Assessment.',
         'Much of what I know about anticipation, teamwork and deciding under uncertainty I learned on the open sea — most recently on my 2025 Atlantic crossing under sail.',
         'Alongside this I completed training as a systemic counsellor and therapist and founded <em>Life Repair Kit</em> — a practice for people moving through crisis and transformation.',
         'Today I\'m building <em>Heartfelt Futures</em>: a practice that bridges scientific foresight with systemic clarity, embodied knowledge and aesthetics. I teach foresight at Freie Universität Berlin, advise organisations and give talks.',
