@@ -361,7 +361,7 @@ export const translations: Record<Lang, Translations> = {
       toast: {
         sending: 'Wird gesendet …',
         success: 'Danke — deine Nachricht ist angekommen.',
-        error: 'Es gab ein Problem beim Senden. Bitte versuch es nochmal oder schreib direkt an lia.meissner@mailbox.org.',
+        error: 'Es gab ein Problem beim Senden. Bitte versuch es nochmal oder schreib mir auf <a href="https://www.linkedin.com/in/liameissner/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.',
       },
     },
     footer: {
@@ -615,7 +615,7 @@ export const translations: Record<Lang, Translations> = {
       toast: {
         sending: 'Sending …',
         success: 'Thanks — your message has arrived.',
-        error: 'Something went wrong. Please try again or write directly to lia.meissner@mailbox.org.',
+        error: 'Something went wrong. Please try again or reach me on <a href="https://www.linkedin.com/in/liameissner/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.',
       },
     },
     footer: {

@@ -40,10 +40,10 @@ document.querySelectorAll('.kontakt-form').forEach((form) => {
     error: form.dataset.toastError || 'Something went wrong. Please try again.',
   };
 
-  const setToast = (state, text) => {
+  const setToast = (state, html) => {
     if (!toast) return;
     toast.setAttribute('data-state', state);
-    toast.textContent = text;
+    toast.innerHTML = html;
   };
 
   form.addEventListener('submit', async (e) => {
