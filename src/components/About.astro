@@ -83,11 +83,13 @@ const copy = t(lang).about;
   }
   /* Image: dimensions set dynamically via JS (height = text body height,
      width = height × 4/5). CSS fallback if JS hasn't run yet keeps the
-     portrait at its native 4:5 framing. */
+     portrait at its native 4:5 framing. max-width:100% prevents the
+     image from overflowing its grid column on narrow viewports. */
   .about-img {
     grid-area: img;
     aspect-ratio: 4 / 5;
     width: 380px;
+    max-width: 100%;
     background: var(--paper-2);
     position: relative;
     overflow: hidden;
