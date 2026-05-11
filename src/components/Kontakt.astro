@@ -15,11 +15,18 @@ const copy = t(lang).kontakt;
     <p class="kontakt-intro">{copy.intro}</p>
   </div>
 
-  <form class="kontakt-form" method="POST" action="https://api.web3forms.com/submit" novalidate>
+  <form
+    class="kontakt-form"
+    method="POST"
+    action="https://api.web3forms.com/submit"
+    data-toast-sending={copy.toast.sending}
+    data-toast-success={copy.toast.success}
+    data-toast-error={copy.toast.error}
+  >
     {/* Web3Forms config — sends submissions to the email registered with the access key.
         To activate: register the email at https://web3forms.com,
         paste the access key below, then push. */}
-    <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+    <input type="hidden" name="access_key" value="2618e74a-6da4-4d24-8e4f-c4e592587e04">
     <input type="hidden" name="subject" value={copy.web3FormsSubject}>
     <input type="hidden" name="from_name" value={copy.web3FormsFromName}>
     {/* Honeypot — bots typically fill every field; humans never see this one. */}
@@ -66,6 +73,8 @@ const copy = t(lang).kontakt;
       <span class="form-note">{copy.note}</span>
       <button type="submit" class="form-submit">{copy.submit}</button>
     </div>
+
+    <div class="form-toast" role="status" aria-live="polite" data-state="idle"></div>
   </form>
 </section>
 
@@ -225,6 +234,39 @@ const copy = t(lang).kontakt;
     transition: background .2s, color .2s;
   }
   .form-submit:hover { background: var(--accent); }
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: var(--ink);
+  }
+
+  /* Submission feedback — hidden until JS sets data-state to sending/success/error */
+  .form-toast {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-top: 4px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity .2s, max-height .2s, padding .2s, margin-top .2s;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .form-toast[data-state="sending"],
+  .form-toast[data-state="success"],
+  .form-toast[data-state="error"] {
+    opacity: 1;
+    max-height: 200px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-top: 4px;
+  }
+  .form-toast[data-state="sending"] { background: var(--paper); color: var(--ink-2); }
+  .form-toast[data-state="success"] { background: var(--accent); color: var(--paper); }
+  .form-toast[data-state="error"]   { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 1px var(--accent); }
 
   /* Chips wrap on viewports below ~880px (form no longer at full max-width) */
   @media (max-width: 880px) {

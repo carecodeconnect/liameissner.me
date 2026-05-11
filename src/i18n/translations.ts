@@ -107,6 +107,11 @@ export type Translations = {
     web3FormsSubject: string;
     web3FormsFromName: string;
     anliegenAria: string;
+    toast: {
+      sending: string;
+      success: string;
+      error: string;
+    };
   };
   footer: {
     socialLabel: string;
@@ -353,6 +358,11 @@ export const translations: Record<Lang, Translations> = {
       web3FormsSubject: 'Neue Nachricht über liameissner.me',
       web3FormsFromName: 'liameissner.me Kontaktformular',
       anliegenAria: 'Anliegen',
+      toast: {
+        sending: 'Wird gesendet …',
+        success: 'Danke — deine Nachricht ist angekommen.',
+        error: 'Es gab ein Problem beim Senden. Bitte versuch es nochmal oder schreib direkt an lia.meissner@mailbox.org.',
+      },
     },
     footer: {
       socialLabel: 'Soziale Medien',
@@ -602,6 +612,11 @@ export const translations: Record<Lang, Translations> = {
       web3FormsSubject: 'New message via liameissner.me',
       web3FormsFromName: 'liameissner.me contact form',
       anliegenAria: 'Topic',
+      toast: {
+        sending: 'Sending …',
+        success: 'Thanks — your message has arrived.',
+        error: 'Something went wrong. Please try again or write directly to lia.meissner@mailbox.org.',
+      },
     },
     footer: {
       socialLabel: 'Social media',

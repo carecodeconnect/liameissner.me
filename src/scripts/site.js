@@ -28,6 +28,58 @@ document.querySelectorAll('.chip-group').forEach((group) => {
   });
 });
 
+// Contact form — submit via fetch so we can show an inline toast instead of
+// redirecting to Web3Forms' default thank-you page. Falls back to a normal
+// form POST if fetch is unavailable.
+document.querySelectorAll('.kontakt-form').forEach((form) => {
+  const toast = form.querySelector('.form-toast');
+  const submit = form.querySelector('.form-submit');
+  const msgs = {
+    sending: form.dataset.toastSending || 'Sending …',
+    success: form.dataset.toastSuccess || 'Thanks — your message has arrived.',
+    error: form.dataset.toastError || 'Something went wrong. Please try again.',
+  };
+
+  const setToast = (state, text) => {
+    if (!toast) return;
+    toast.setAttribute('data-state', state);
+    toast.textContent = text;
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    setToast('sending', msgs.sending);
+    if (submit) submit.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success !== false) {
+        setToast('success', msgs.success);
+        form.reset();
+        // Clear chip selections + hidden anliegen value
+        form.querySelectorAll('.chip.is-selected').forEach((c) => {
+          c.classList.remove('is-selected');
+          c.setAttribute('aria-checked', 'false');
+        });
+        const hidden = form.querySelector('#f-anliegen');
+        if (hidden) hidden.value = '';
+      } else {
+        setToast('error', msgs.error);
+      }
+    } catch {
+      setToast('error', msgs.error);
+    } finally {
+      if (submit) submit.disabled = false;
+    }
+  });
+});
+
 // Aktuelles carousel — infinite loop via cloned tiles at both ends.
 // We clone all originals once before and once after, then silently jump
 // scrollLeft by one "cycle" (n × tile-step) whenever the user scrolls
