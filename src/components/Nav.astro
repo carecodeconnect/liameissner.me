@@ -10,9 +10,19 @@ const links = [
 <header class="nav" id="top">
   <div class="nav-inner">
     <a href="#top" class="brand">Lia Meissner</a>
-    <nav class="nav-links" aria-label="Hauptnavigation">
-      {links.map((l) => <a href={l.href}>{l.label}</a>)}
-    </nav>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+      <div class="nav-social" aria-label="Soziale Medien">
+        <a href="https://www.linkedin.com/in/liameissner/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://liameissner.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="Substack">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22.54 8.24H1.46V5.4h21.08v2.84zM1.46 10.81V24L12 18.11 22.54 24V10.81H1.46zM22.54 0H1.46v2.84h21.08V0z"/></svg>
+        </a>
+      </div>
+    </div>
     <button class="nav-toggle" aria-controls="mobile-menu" aria-expanded="false">Menü</button>
   </div>
   <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile Navigation">
@@ -45,9 +55,26 @@ const links = [
     color: var(--ink);
     white-space: nowrap;
   }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
   .nav-links { display: flex; gap: 22px; }
   .nav-links :global(a) { color: var(--ink); }
   .nav-links :global(a:hover) { color: var(--accent); opacity: 1; }
+  /* Round social icons — same treatment as in the footer, scaled down for
+     the compact sticky header. */
+  .nav-social { display: flex; align-items: center; gap: 8px; }
+  .nav-social :global(a) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    transition: background .15s ease;
+  }
+  .nav-social :global(a:hover) { background: var(--accent); opacity: 1; }
+  .nav-social :global(svg) { width: 14px; height: 14px; fill: currentColor; display: block; }
   .nav-toggle {
     display: none;
     background: none;
@@ -77,6 +104,7 @@ const links = [
   }
   @media (max-width: 760px) {
     .nav-links { display: none; }
+    .nav-right { gap: 14px; }
     .nav-toggle { display: inline-block; }
   }
 </style>

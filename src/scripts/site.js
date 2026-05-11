@@ -8,19 +8,22 @@ document.querySelectorAll('.pillar-head').forEach((btn) => {
   });
 });
 
-// Anliegen chip group — single-select radio
+// Anliegen chip group — multi-select (each chip toggles independently)
 document.querySelectorAll('.chip-group').forEach((group) => {
   const chips = group.querySelectorAll('.chip');
   const hidden = document.getElementById('f-anliegen');
+  const sync = () => {
+    if (!hidden) return;
+    hidden.value = Array.from(chips)
+      .filter((c) => c.classList.contains('is-selected'))
+      .map((c) => c.textContent.trim())
+      .join(', ');
+  };
   chips.forEach((c) => {
     c.addEventListener('click', () => {
-      chips.forEach((x) => {
-        x.classList.remove('is-selected');
-        x.setAttribute('aria-checked', 'false');
-      });
-      c.classList.add('is-selected');
-      c.setAttribute('aria-checked', 'true');
-      if (hidden) hidden.value = c.textContent.trim();
+      const on = c.classList.toggle('is-selected');
+      c.setAttribute('aria-checked', on ? 'true' : 'false');
+      sync();
     });
   });
 });
